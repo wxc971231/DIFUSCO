@@ -1,0 +1,49 @@
+export PYTHONPATH="$PWD:$PYTHONPATH"
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+
+python -u difusco/train.py \
+  --task "tsp" \
+  --wandb_logger_name "tsp_diffusion_graph_gaussian_tsp10k_test_sequential4" \
+  --diffusion_type "categorical" \
+  --do_test \
+  --learning_rate 0.0002 \
+  --weight_decay 0.0001 \
+  --lr_scheduler "cosine-decay" \
+  --storage_path "/your/storage/path" \
+  --training_split "/your/tsp10000_train_concorde.txt" \
+  --validation_split "/your/tsp10000_valid_concorde.txt" \
+  --test_split "/your/tsp10000_test_concorde.txt" \
+  --sparse_factor 100 \
+  --batch_size 1 \
+  --num_epochs 25 \
+  --validation_examples 8 \
+  --inference_schedule "cosine" \
+  --inference_diffusion_steps 50 \
+  --sequential_sampling 4 \
+  --two_opt_iterations 5000 \
+  --ckpt_path "/data1/autoco/DIFUSCO/ckpt/tsp1000_categorical.ckpt" \
+  --resume_weight_only
+
+export PYTHONPATH="$PWD:$PYTHONPATH"
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+
+python -u difusco/train.py \
+  --task "tsp" \
+  --diffusion_type "categorical" \
+  --do_test \
+  --learning_rate 0.0002 \
+  --weight_decay 0.0001 \
+  --lr_scheduler "cosine-decay" \
+  --storage_path "/data1/autoco/DIFUSCO/output" \
+  --training_split "/data1/autoco/DIFUSCO/ckpt/tsp1000_test_concorde.txt" \
+  --validation_split "/data1/autoco/DIFUSCO/ckpt/tsp1000_test_concorde.txt" \
+  --test_split "/data1/autoco/DIFUSCO/ckpt/tsp1000_test_concorde.txt" \
+  --sparse_factor 50 \
+  --batch_size 32 \
+  --num_epochs 25 \
+  --validation_examples 8 \
+  --inference_schedule "cosine" \
+  --inference_diffusion_steps 50 \
+  --parallel_sampling 4 \
+  --ckpt_path "/data1/autoco/DIFUSCO/ckpt/tsp1000_categorical.ckpt" \
+  --resume_weight_only
