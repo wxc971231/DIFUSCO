@@ -20,8 +20,7 @@ def arg_parser():
     parser.add_argument('--task', type=str, required=True)
     parser.add_argument('--storage_path', type=str, required=True)
     parser.add_argument('--training_split', type=str, default='data/tsp/tsp50_train_concorde.txt')
-    parser.add_argument('--training_split_label_dir', type=str, default=None,
-                        help="Directory containing labels for training split (used for MIS).")
+    parser.add_argument('--training_split_label_dir', type=str, default=None, help="Directory containing labels for training split (used for MIS).")
     parser.add_argument('--validation_split', type=str, default='data/tsp/tsp50_test_concorde.txt')
     parser.add_argument('--test_split', type=str, default='data/tsp/tsp50_test_concorde.txt')
     parser.add_argument('--validation_examples', type=int, default=64)

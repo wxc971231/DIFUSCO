@@ -34,6 +34,26 @@
         "--ckpt_path", "/data1/autoco/DIFUSCO/ckpt/tsp1000_categorical.ckpt",
         "--resume_weight_only"
       ]
-    }
+    },
+    {
+      "name": "Generate TSP Data with DIFUSCO",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/gen_data.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}",
+        "CUDA_VISIBLE_DEVICES": "0"
+      },
+    },
+    {
+      "name": "Python 当前文件",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+    },
   ]
 }

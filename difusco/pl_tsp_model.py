@@ -16,24 +16,23 @@ from utils.tsp_utils import TSPEvaluator, batched_two_opt_torch, merge_tours
 
 
 class TSPModel(COMetaModel):
-  def __init__(self,
-               param_args=None):
+  def __init__(self, param_args=None):
     super(TSPModel, self).__init__(param_args=param_args, node_feature_only=False)
 
-    self.train_dataset = TSPGraphDataset(
-        data_file=os.path.join(self.args.storage_path, self.args.training_split),
-        sparse_factor=self.args.sparse_factor,
-    )
+    # self.train_dataset = TSPGraphDataset(
+    #     data_file=os.path.join(self.args.storage_path, self.args.training_split),
+    #     sparse_factor=self.args.sparse_factor,
+    # )
 
-    self.test_dataset = TSPGraphDataset(
-        data_file=os.path.join(self.args.storage_path, self.args.test_split),
-        sparse_factor=self.args.sparse_factor,
-    )
+    # self.test_dataset = TSPGraphDataset(
+    #     data_file=os.path.join(self.args.storage_path, self.args.test_split),
+    #     sparse_factor=self.args.sparse_factor,
+    # )
 
-    self.validation_dataset = TSPGraphDataset(
-        data_file=os.path.join(self.args.storage_path, self.args.validation_split),
-        sparse_factor=self.args.sparse_factor,
-    )
+    # self.validation_dataset = TSPGraphDataset(
+    #     data_file=os.path.join(self.args.storage_path, self.args.validation_split),
+    #     sparse_factor=self.args.sparse_factor,
+    # )
 
   def forward(self, x, adj, t, edge_index):
     return self.model(x, t, adj, edge_index)
